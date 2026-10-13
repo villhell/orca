@@ -17281,7 +17281,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "unread",
           "d6a8de3934": "agents",
-          "dc708f3eff": "Close agents"
+          "dc708f3eff": "Close agents",
+          "gridLayout": "Show agents side by side",
+          "listLayout": "Show one agent at a time"
         },
         "ActivityScopeFilterControls": {
           "hiddenCount": "{{value0}} hidden",
@@ -17319,6 +17321,10 @@
           "markManyRead": "Mark {{count}} Agents Read",
           "markManyUnread": "Mark {{count}} Agents Unread",
           "clearMany": "Clear {{count}} Agents from List"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "No live agent terminals to show in the grid.",
+          "overflowCount": "{{value0}} more agents are not shown. Narrow the list filters to choose which appear."
         }
       },
       "confirmation": {

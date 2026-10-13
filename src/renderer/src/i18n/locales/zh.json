@@ -16920,7 +16920,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "未读",
           "d6a8de3934": "智能体",
-          "dc708f3eff": "紧密智能体"
+          "dc708f3eff": "紧密智能体",
+          "gridLayout": "并排显示 Agent",
+          "listLayout": "一次显示一个 Agent"
         },
         "clearCompleted": {
           "clearedOne": "清除 1 个已完成的智能体",
@@ -16956,6 +16958,10 @@
           "markManyRead": "将 {{count}} 个智能体标记为已读",
           "markManyUnread": "将 {{count}} 个智能体标记为未读",
           "clearMany": "从列表中清除 {{count}} 个智能体"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "没有可在网格中显示的运行中 Agent 终端。",
+          "overflowCount": "还有 {{value0}} 个 Agent 未显示。请用列表筛选器缩小要显示的 Agent。"
         }
       },
       "confirmation": {

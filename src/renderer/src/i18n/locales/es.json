@@ -16906,7 +16906,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "no leído",
           "d6a8de3934": "agentes",
-          "dc708f3eff": "Agents cercanos"
+          "dc708f3eff": "Agents cercanos",
+          "gridLayout": "Mostrar agentes en paralelo",
+          "listLayout": "Mostrar un agente a la vez"
         },
         "ActivityThreadHoverCard": {
           "workspace": "Espacio de trabajo",
@@ -16942,6 +16944,10 @@
           "markManyRead": "Marcar {{count}} agentes como leídos",
           "markManyUnread": "Marcar {{count}} agentes como no leídos",
           "clearMany": "Quitar {{count}} agentes de la lista"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "No hay terminales de agentes activas para mostrar en la cuadrícula.",
+          "overflowCount": "{{value0}} agentes más no se muestran. Ajusta los filtros de la lista para elegir cuáles aparecen."
         }
       },
       "confirmation": {

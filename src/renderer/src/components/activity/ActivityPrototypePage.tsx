@@ -20,7 +20,10 @@ import {
   useActivityTerminalLoadingLabel,
   useActivityTerminalPortalStatus
 } from './activity-terminal-portal-status'
-import type { ActivityTerminalPortalSlotId } from './activity-thread-types'
+import type { ActivityTerminalPortalSlotId, AgentPaneThread } from './activity-thread-types'
+import { useActivityLayoutMode } from './activity-layout-mode'
+import { useActivityGridPortals } from './use-activity-grid-portals'
+import { ActivityGridView } from './ActivityGridView'
 
 export * from './activity-prototype-page-exports'
 
@@ -68,6 +71,8 @@ export default function ActivityPrototypePage(): React.JSX.Element {
     markAllReadThreads,
     visibleThreadGroups
   } = useAgentPaneThreads({ query, readFilter, groupBy, selectedPaneKey, showChildAgents })
+  const isGridLayout = useActivityLayoutMode() === 'grid'
+  const grid = useActivityGridPortals({ enabled: isGridLayout, threads: visibleThreads, storeData })
   if (!selectedPaneKeyIsLive) {
     // Why: rows disappear when agent retention or tab state changes; clear stale selection before detail/portal rendering targets it.
     setSelectedPaneKey(null)
@@ -216,8 +221,8 @@ export default function ActivityPrototypePage(): React.JSX.Element {
   // Why no cleanup-to-null on each change: it forces the portal through null on every switch, flashing the workspace pane; null only on unmount (effect below).
   // oxlint-disable-next-line react-doctor/no-derived-state-effect -- Why: this publishes portal descriptors to Terminal's external portal store before paint.
   useLayoutEffect(() => {
-    setActivityTerminalPortals(portalDescriptors)
-  }, [portalDescriptors])
+    setActivityTerminalPortals(isGridLayout ? grid.descriptors : portalDescriptors)
+  }, [grid.descriptors, isGridLayout, portalDescriptors])
 
   const setActivityPageRef = useCallback((node: HTMLDivElement | null): void => {
     if (!node) {
@@ -232,13 +237,13 @@ export default function ActivityPrototypePage(): React.JSX.Element {
         activeElement: document.activeElement,
         event,
         input: activityFilterInputRef.current,
-        terminalPortalTargets: [activePortalTargetEl, inactivePortalTargetEl]
+        terminalPortalTargets: [activePortalTargetEl, inactivePortalTargetEl, ...grid.targets]
       })
     }
 
     window.addEventListener('keydown', focusActivityFilter, { capture: true })
     return () => window.removeEventListener('keydown', focusActivityFilter, { capture: true })
-  }, [activePortalTargetEl, inactivePortalTargetEl])
+  }, [activePortalTargetEl, inactivePortalTargetEl, grid.targets])
 
   const {
     markThreadRead,
@@ -258,6 +263,16 @@ export default function ActivityPrototypePage(): React.JSX.Element {
     unacknowledgeAgents: storeData.unacknowledgeAgents,
     setSelectedPaneKey
   })
+
+  const { focusCell } = grid
+  const selectThreadInLayout = useCallback(
+    (thread: AgentPaneThread): void => {
+      selectThread(thread)
+      // Why: in the grid every terminal is already on screen, so a row click moves keyboard ownership instead.
+      focusCell(thread.paneKey)
+    },
+    [focusCell, selectThread]
+  )
 
   const canJumpToWorkspace = useCallback(
     (thread: Parameters<typeof hasActivityThreadWorkspace>[0]) =>
@@ -337,7 +352,7 @@ export default function ActivityPrototypePage(): React.JSX.Element {
           visibleThreadGroups={visibleThreadGroups}
           visibleThreadCount={visibleThreads.length}
           selectedPaneKey={selectedThread?.paneKey ?? null}
-          onSelectThread={selectThread}
+          onSelectThread={selectThreadInLayout}
           onJumpToWorkspace={jumpToWorkspace}
           onMarkThreadRead={markThreadRead}
           onMarkThreadUnread={markThreadUnread}
@@ -347,20 +362,30 @@ export default function ActivityPrototypePage(): React.JSX.Element {
           isThreadListResizing={isThreadListResizing}
           onResizeStart={onResizeStart}
         />
-        <ActivityThreadDetailPane
-          selectedThread={selectedThread}
-          selectedHasLiveTab={Boolean(selectedHasLiveTab)}
-          selectedWorktreeAvailable={selectedWorktreeAvailable}
-          visibleThread={visibleThread}
-          stagedThread={stagedThread}
-          activePortalSlotId={activePortalSlotId}
-          setPrimaryPortalTarget={setPrimaryPortalTarget}
-          setSecondaryPortalTarget={setSecondaryPortalTarget}
-          visiblePortalReady={visiblePortalReady}
-          visiblePortalUnavailable={visiblePortalUnavailable}
-          showTerminalLoadingLabel={showTerminalLoadingLabel}
-          visibleThreadCount={visibleThreads.length}
-        />
+        {isGridLayout ? (
+          <ActivityGridView
+            cells={grid.cells}
+            overflowCount={grid.overflowCount}
+            focusedPaneKey={grid.focusedPaneKey}
+            onFocusCell={focusCell}
+            onTargetChange={grid.setCellTarget}
+          />
+        ) : (
+          <ActivityThreadDetailPane
+            selectedThread={selectedThread}
+            selectedHasLiveTab={Boolean(selectedHasLiveTab)}
+            selectedWorktreeAvailable={selectedWorktreeAvailable}
+            visibleThread={visibleThread}
+            stagedThread={stagedThread}
+            activePortalSlotId={activePortalSlotId}
+            setPrimaryPortalTarget={setPrimaryPortalTarget}
+            setSecondaryPortalTarget={setSecondaryPortalTarget}
+            visiblePortalReady={visiblePortalReady}
+            visiblePortalUnavailable={visiblePortalUnavailable}
+            showTerminalLoadingLabel={showTerminalLoadingLabel}
+            visibleThreadCount={visibleThreads.length}
+          />
+        )}
       </main>
     </div>
   )

@@ -16936,7 +16936,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "읽지 않음",
           "d6a8de3934": "에이전트",
-          "dc708f3eff": "agents 닫기"
+          "dc708f3eff": "agents 닫기",
+          "gridLayout": "Agent를 나란히 표시",
+          "listLayout": "Agent를 하나씩 표시"
         },
         "clearCompleted": {
           "clearedOne": "완료된 에이전트 1개를 클리어했습니다.",
@@ -16972,6 +16974,10 @@
           "markManyRead": "에이전트 {{count}}개 읽음으로 표시",
           "markManyUnread": "에이전트 {{count}}개 읽지 않은 것으로 표시",
           "clearMany": "목록에서 에이전트 {{count}}개 지우기"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "그리드에 표시할 실행 중인 Agent 터미널이 없습니다.",
+          "overflowCount": "Agent {{value0}}개가 더 있지만 표시되지 않습니다. 목록 필터로 표시할 Agent를 좁혀 주세요."
         }
       },
       "confirmation": {

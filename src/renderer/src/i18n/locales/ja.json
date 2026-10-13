@@ -16906,7 +16906,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "未読",
           "d6a8de3934": "Agent",
-          "dc708f3eff": "Agent を閉じる"
+          "dc708f3eff": "Agent を閉じる",
+          "gridLayout": "Agent を並べて表示",
+          "listLayout": "Agent を1つずつ表示"
         },
         "clearCompleted": {
           "clearedOne": "完了した Agent を 1 人クリアした",
@@ -16942,6 +16944,10 @@
           "markManyRead": "{{count}} 件の Agent に既読マークを付ける",
           "markManyUnread": "{{count}} 件の Agent を未読としてマークする",
           "clearMany": "{{count}} 件の Agent をリストから消去"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "グリッドに表示できる実行中の Agent ターミナルがありません。",
+          "overflowCount": "ほかに {{value0}} 件の Agent は表示されていません。リストのフィルターで表示する Agent を絞り込んでください。"
         }
       },
       "confirmation": {

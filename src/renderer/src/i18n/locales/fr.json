@@ -17012,7 +17012,9 @@
         "ActivityTitlebarControls": {
           "f915168c8e": "non lu",
           "d6a8de3934": "agents",
-          "dc708f3eff": "Fermer les agents"
+          "dc708f3eff": "Fermer les agents",
+          "gridLayout": "Afficher les agents côte à côte",
+          "listLayout": "Afficher un agent à la fois"
         },
         "clearCompleted": {
           "clearedOne": "Effacé 1 agent terminé",
@@ -17048,6 +17050,10 @@
           "markManyRead": "Marquer {{count}} agents comme lus",
           "markManyUnread": "Marquer {{count}} agents comme non lus",
           "clearMany": "Retirer {{count}} agents de la liste"
+        },
+        "ActivityGridView": {
+          "emptyGrid": "Aucun terminal d’agent actif à afficher dans la grille.",
+          "overflowCount": "{{value0}} autres agents ne sont pas affichés. Affinez les filtres de la liste pour choisir ceux qui apparaissent."
         }
       },
       "confirmation": {
