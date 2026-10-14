@@ -40,7 +40,8 @@ const testOptions = {
     resolve('config/scripts/happy-dom-offscreen-canvas.ts'),
     resolve('config/scripts/happy-dom-mutation-observer-retention.ts'),
     resolve('config/scripts/vitest-host-ports-setup.ts'),
-    resolve('config/scripts/vitest-caller-identity-env-setup.ts')
+    resolve('config/scripts/vitest-caller-identity-env-setup.ts'),
+    resolve('config/scripts/vitest-fork-edition-setup.ts')
   ],
   include: UNIT_INCLUDE,
   exclude: balancedShards ? UNIT_EXCLUDE : defaultExclude,

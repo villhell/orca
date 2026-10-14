@@ -51,7 +51,7 @@ describe('electron-builder mac channel config', () => {
   it('builds hourly artifacts with the release signing identity', () => {
     withHourlyEnv((config) => {
       expect(config.mac.appId).toBeUndefined()
-      expect(config.appId).toBe('com.stablyai.orca')
+      expect(config.appId).toBe('com.villhell.orcagrid')
       expect(config.mac.hardenedRuntime).toBe(true)
       expect(config.forceCodeSigning).toBe(true)
     })
@@ -88,7 +88,10 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_HOURLY: '1', ORCA_HOURLY_BUILD_VERSION: '1.4.160-hourly.202607281400' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-hourly.202607281400' })
+        expect(config.extraMetadata).toEqual({
+          name: 'orca-grid',
+          version: '1.4.160-hourly.202607281400'
+        })
       }
     )
   })
@@ -98,7 +101,7 @@ describe('electron-builder mac channel config', () => {
   // argument apply. Only the destination repo differs.
   it('builds adhoc artifacts with the release identity and its own repo', () => {
     withAdhocEnv((config) => {
-      expect(config.appId).toBe('com.stablyai.orca')
+      expect(config.appId).toBe('com.villhell.orcagrid')
       expect(config.mac.hardenedRuntime).toBe(true)
       expect(config.mac.notarize).toBe(true)
       expect(config.forceCodeSigning).toBe(true)
@@ -110,14 +113,17 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_ADHOC: '1', ORCA_ADHOC_BUILD_VERSION: '1.4.160-adhoc.20260728140533' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-adhoc.20260728140533' })
+        expect(config.extraMetadata).toEqual({
+          name: 'orca-grid',
+          version: '1.4.160-adhoc.20260728140533'
+        })
       }
     )
   })
 
   it('builds daily artifacts with the release identity and its own repo', () => {
     withDailyEnv((config) => {
-      expect(config.appId).toBe('com.stablyai.orca')
+      expect(config.appId).toBe('com.villhell.orcagrid')
       expect(config.mac.hardenedRuntime).toBe(true)
       expect(config.mac.notarize).toBe(true)
       expect(config.forceCodeSigning).toBe(true)
@@ -129,7 +135,10 @@ describe('electron-builder mac channel config', () => {
     withEnv(
       { ORCA_MAC_DAILY: '1', ORCA_DAILY_BUILD_VERSION: '1.4.160-daily.202607281300' },
       (config) => {
-        expect(config.extraMetadata).toEqual({ version: '1.4.160-daily.202607281300' })
+        expect(config.extraMetadata).toEqual({
+          name: 'orca-grid',
+          version: '1.4.160-daily.202607281300'
+        })
       }
     )
   })

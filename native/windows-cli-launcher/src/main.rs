@@ -19,6 +19,8 @@ use std::path::{Path, PathBuf};
 use std::process::{exit, Command};
 
 const SERVER_CONFIG_FILENAME: &str = "orca-launcher.cfg";
+// Keep in sync with executableName in config/fork-edition.cjs.
+const APP_EXECUTABLE_FILENAME: &str = "OrcaGrid.exe";
 
 fn main() {
     let launcher = match env::current_exe() {
@@ -35,21 +37,21 @@ fn main() {
 
     let Some(resources_directory) = launcher.parent().and_then(Path::parent) else {
         fail(&format!(
-            "Unable to locate Orca.exe next to \"{}\"",
+            "Unable to locate {APP_EXECUTABLE_FILENAME} next to \"{}\"",
             launcher.display()
         ))
     };
     let Some(app_directory) = resources_directory.parent() else {
         fail(&format!(
-            "Unable to locate Orca.exe next to \"{}\"",
+            "Unable to locate {APP_EXECUTABLE_FILENAME} next to \"{}\"",
             resources_directory.display()
         ))
     };
 
-    let electron_path = app_directory.join("Orca.exe");
+    let electron_path = app_directory.join(APP_EXECUTABLE_FILENAME);
     if !electron_path.is_file() {
         fail(&format!(
-            "Unable to locate Orca.exe next to \"{}\"",
+            "Unable to locate {APP_EXECUTABLE_FILENAME} next to \"{}\"",
             resources_directory.display()
         ));
     }

@@ -27,6 +27,7 @@ import {
 import { parseDaemonPidFile } from './daemon-pid-file-parse'
 import { quarantineCorruptDaemonPidRecord } from './daemon-pid-record-quarantine'
 import { inspectProcessLiveness, mergeProcessLivenessVerdict } from './daemon-process-inspection'
+import { FORK_EDITION } from '../../shared/fork-edition'
 
 /**
  * Relocate the terminal daemon's process image out of the app install dir into LOCAL userData so it
@@ -78,7 +79,7 @@ function currentBuildFingerprint(
 }
 
 // LOCAL appData (not roaming) so OneDrive/roaming never syncs this ~260MB runtime. Shared with NSIS uninstall (config/nsis/orca-installer-hooks.nsh) — keep in sync.
-const LOCAL_HOST_ROOT_NAME = 'Orca'
+const LOCAL_HOST_ROOT_NAME = FORK_EDITION.localAppDataRootName
 
 // Mirror getDaemonEntryPath()'s resolution order so the copied entry is the exact file the in-dir fork would run.
 function resolveEntrySourcePath(resourcesPath: string, observedEntryPath?: string): string {

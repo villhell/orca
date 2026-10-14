@@ -120,6 +120,7 @@
     "reclaim:worktree-space": "node config/scripts/reclaim-worktree-space.mjs",
     "rebuild:node": "pnpm rebuild node-pty",
     "build:unpack": "pnpm run build && pnpm run ensure:electron-runtime && electron-builder --config config/electron-builder.config.cjs --dir",
+    "build:fork-win": "pnpm --dir mobile install --frozen-lockfile && pnpm run build:wsl-guest && pnpm run build:native && pnpm run build:cli && pnpm run build:electron-vite && pnpm run verify:built-skills-cli && pnpm run build:web-from-renderer && pnpm run build:mobile-web && pnpm run ensure:electron-runtime && electron-builder --config config/electron-builder.config.cjs --win --publish never",
     "build:win": "pnpm run build:desktop && pnpm run ensure:electron-runtime && electron-builder --config config/electron-builder.config.cjs --win",
     "build:icons": "bash resources/icon-source/generate.sh",
     "build:mac": "pnpm run build:desktop && pnpm run build:computer-macos && pnpm run build:keyboard-layout-macos && pnpm run build:notification-status-macos && pnpm run ensure:electron-runtime && node config/scripts/build-mac-local.mjs",

@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import path from 'node:path'
 import type { AppIdentity } from '../../shared/app-identity'
+import { FORK_EDITION } from '../../shared/fork-edition'
 
 const BASE_APP_NAME = 'Orca'
 const BASE_APP_USER_MODEL_ID = 'com.stablyai.orca'
@@ -66,16 +67,17 @@ export function getDevInstanceIdentity(
   env: NodeJS.ProcessEnv = process.env
 ): DevInstanceIdentity {
   if (!isDev) {
+    // Why fork values: a packaged fork sharing upstream's AUMID would merge taskbar groups and notifications.
     return {
-      name: BASE_APP_NAME,
-      appName: BASE_APP_NAME,
+      name: FORK_EDITION.appName,
+      appName: FORK_EDITION.appName,
       isDev: false,
       devLabel: null,
       devBranch: null,
       devWorktreeName: null,
       devRepoRoot: null,
       dockBadgeLabel: null,
-      appUserModelId: BASE_APP_USER_MODEL_ID
+      appUserModelId: FORK_EDITION.appUserModelId
     }
   }
 

@@ -1,16 +1,18 @@
 import { describe, expect, it } from 'vitest'
+import { FORK_EDITION } from '../../shared/fork-edition'
 import { getDevInstanceIdentity, shouldApplyPreReadyAppName } from './dev-instance-identity'
 
 describe('dev-instance-identity', () => {
-  it('keeps packaged identity stable', () => {
+  it('gives the packaged fork its own identity so it never merges with upstream Orca', () => {
     expect(getDevInstanceIdentity(false, {})).toMatchObject({
-      name: 'Orca',
-      appName: 'Orca',
+      name: FORK_EDITION.appName,
+      appName: FORK_EDITION.appName,
       isDev: false,
       devLabel: null,
       dockBadgeLabel: null,
-      appUserModelId: 'com.stablyai.orca'
+      appUserModelId: FORK_EDITION.appUserModelId
     })
+    expect(FORK_EDITION.appUserModelId).not.toBe('com.stablyai.orca')
   })
 
   it('pins a stable dev appName across branches so the safeStorage key does not churn', () => {

@@ -10,6 +10,7 @@ import {
 } from './daemon-host-manifest'
 import { buildInstallFixture } from './daemon-host-relocation.test-fixture'
 import { getRelocatedDaemonHost, materializeRelocatedDaemonHost } from './daemon-host-relocation'
+import { FORK_EDITION } from '../../shared/fork-edition'
 
 // Adhoc/dev builds carry the longest version strings that reach users.
 const LONG_VERSION = '1.4.223-adhoc.20261008042529'
@@ -56,7 +57,11 @@ function materializedHostRoot(): string {
 }
 
 function publishedBuilds(): string[] {
-  const versionRoot = join(localAppDataDir, 'Orca', 'daemon-host-profiles')
+  const versionRoot = join(
+    localAppDataDir,
+    FORK_EDITION.localAppDataRootName,
+    'daemon-host-profiles'
+  )
   return readdirSync(versionRoot).flatMap((profile) => {
     const dir = join(versionRoot, profile, version)
     return existsSync(dir) ? readdirSync(dir).filter((name) => name.startsWith('build-')) : []
