@@ -17677,6 +17677,20 @@
         "resuming": "重启后正在自动恢复。",
         "resumed": "重启后已自动恢复。",
         "changeInSettings": "在设置中更改"
+      },
+      "multiProject": {
+        "toggleView": "并排显示项目",
+        "terminalTab": "终端",
+        "closeTab": "关闭标签页",
+        "noProject": "在侧边栏中选择项目即可在此显示。",
+        "missingProject": "此项目不可用。",
+        "noTerminal": "此处没有可显示的该项目终端。",
+        "noProjectLabel": "未选择项目",
+        "newTerminal": "新建终端",
+        "splitRight": "向右拆分",
+        "splitDown": "向下拆分",
+        "closePane": "关闭窗格",
+        "openTerminal": "打开终端"
       }
     },
     "i18n": {

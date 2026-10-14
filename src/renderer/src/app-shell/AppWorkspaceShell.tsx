@@ -6,6 +6,8 @@ import RightSidebar from '../components/right-sidebar'
 import { RecoverableRenderErrorBoundary } from '../components/error-boundaries/RecoverableRenderErrorBoundary'
 import { FloatingTerminalToggleButton } from '../components/floating-terminal/FloatingTerminalToggleButton'
 import { TerminalWorkbenchContainer } from '../components/TerminalWorkbenchContainer'
+import { MultiProjectWorkspace } from '../components/multi-project/MultiProjectWorkspace'
+import { useMultiProjectViewEnabled } from '../components/multi-project/multi-project-view-store'
 import type { VirtualizedScrollAnchor } from '../hooks/useVirtualizedScrollAnchor'
 import { TitlebarLeftControls } from './TitlebarLeftControls'
 import { RightSidebarToggle, TitlebarMainStrip } from './TitlebarMainStrip'
@@ -99,6 +101,12 @@ export function AppWorkspaceShell(props: {
   const scrollOffsetRef = useRef(0)
   const scrollAnchorRef = useRef<VirtualizedScrollAnchor>(null)
   const sidebarScrollRefs = { scrollOffsetRef, scrollAnchorRef }
+  const multiProjectViewEnabled = useMultiProjectViewEnabled()
+  // Why: the view covers the workbench only where it would otherwise show one project.
+  const showMultiProjectView =
+    multiProjectViewEnabled &&
+    layout.activeView === 'terminal' &&
+    !(layout.creationLayoutActive && layout.activePendingCreationId)
 
   return (
     // Why: workspace activation is a hot path; activeWorktreeId in reset keys would remount whole surfaces during wake.
@@ -214,6 +222,7 @@ export function AppWorkspaceShell(props: {
                     </RecoverableRenderErrorBoundary>
                   </Suspense>
                 </div>
+                {showMultiProjectView ? <MultiProjectWorkspace /> : null}
                 {floatingWorkspace.showToggleButton ? (
                   <FloatingTerminalToggleButton
                     open={floatingWorkspace.open}

@@ -1180,6 +1180,12 @@ html.native-shell .app-layout {
   color: var(--foreground);
 }
 
+/* Why: a toggle that stays on (the multi-project view) must read as pressed. */
+.sidebar-toggle[data-active='true'] {
+  background: var(--accent);
+  color: var(--foreground);
+}
+
 /* Why: tighter padding for the back/forward pair so the arrows sit
    close together as a single navigation group, while the standard
    .sidebar-toggle spacing stays unchanged for other titlebar icons. */

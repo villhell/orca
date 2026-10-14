@@ -17997,6 +17997,20 @@
         "resuming": "Resuming automatically after the restart.",
         "resumed": "Resumed automatically after the restart.",
         "changeInSettings": "Change in Settings"
+      },
+      "multiProject": {
+        "toggleView": "Show projects side by side",
+        "terminalTab": "Terminal",
+        "closeTab": "Close tab",
+        "noProject": "Select a project in the sidebar to show it here.",
+        "missingProject": "This project is not available.",
+        "noTerminal": "No terminal is open for this project here.",
+        "noProjectLabel": "No project",
+        "newTerminal": "New terminal",
+        "splitRight": "Split right",
+        "splitDown": "Split down",
+        "closePane": "Close pane",
+        "openTerminal": "Open terminal"
       }
     },
     "i18n": {

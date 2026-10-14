@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, MoreHorizontal, PanelLeft } from 'lucide-react'
+import { ArrowLeft, ArrowRight, LayoutDashboard, MoreHorizontal, PanelLeft } from 'lucide-react'
 import logo from '../../../../resources/logo.svg'
 import { translate } from '@/i18n/i18n'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
@@ -17,6 +17,10 @@ import { useShortcutLabel } from '../hooks/useShortcutLabel'
 import { useAppStore } from '../store'
 import { hasCustomTitleBar, hasMacTrafficLights } from './app-window-chrome'
 import type { AppChromeLayout } from './use-app-chrome-layout'
+import {
+  multiProjectViewActions,
+  useMultiProjectViewEnabled
+} from '../components/multi-project/multi-project-view-store'
 
 /**
  * The titlebar's left cluster: window chrome padding, app name, sidebar toggle, and the
@@ -31,6 +35,11 @@ export function TitlebarLeftControls({ layout }: { layout: AppChromeLayout }): R
   const leftSidebarShortcutLabel = useShortcutLabel('sidebar.left.toggle')
   const historyBackShortcutLabel = useShortcutLabel('worktree.history.back')
   const historyForwardShortcutLabel = useShortcutLabel('worktree.history.forward')
+  const multiProjectViewEnabled = useMultiProjectViewEnabled()
+  const multiProjectViewLabel = translate(
+    'auto.components.multiProject.toggleView',
+    'Show projects side by side'
+  )
 
   return (
     // Why: measure the ENTIRE row so TabGroupPanel's collapse spacer reserves enough width; measuring only the inner cluster left back/forward over the first tab.
@@ -104,6 +113,24 @@ export function TitlebarLeftControls({ layout }: { layout: AppChromeLayout }): R
               {translate('auto.App.ce37cf5279', 'Toggle sidebar ({{value0}})', {
                 value0: leftSidebarShortcutLabel
               })}
+            </TooltipContent>
+          </Tooltip>
+        )}
+        {layout.activeView === 'terminal' && (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                className="sidebar-toggle"
+                onClick={() => multiProjectViewActions.setEnabled(!multiProjectViewEnabled)}
+                aria-label={multiProjectViewLabel}
+                aria-pressed={multiProjectViewEnabled}
+                data-active={multiProjectViewEnabled}
+              >
+                <LayoutDashboard size={16} />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" sideOffset={6}>
+              {multiProjectViewLabel}
             </TooltipContent>
           </Tooltip>
         )}

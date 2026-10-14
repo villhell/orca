@@ -17765,6 +17765,20 @@
         "resuming": "Reprise automatique après le redémarrage.",
         "resumed": "Reprises automatiquement après le redémarrage.",
         "changeInSettings": "Modifier dans les paramètres"
+      },
+      "multiProject": {
+        "toggleView": "Afficher les projets côte à côte",
+        "terminalTab": "Terminal",
+        "closeTab": "Fermer l’onglet",
+        "noProject": "Sélectionnez un projet dans la barre latérale pour l’afficher ici.",
+        "missingProject": "Ce projet n’est pas disponible.",
+        "noTerminal": "Aucun terminal de ce projet n’est ouvert ici.",
+        "noProjectLabel": "Aucun projet",
+        "newTerminal": "Nouveau terminal",
+        "splitRight": "Diviser à droite",
+        "splitDown": "Diviser vers le bas",
+        "closePane": "Fermer le panneau",
+        "openTerminal": "Ouvrir un terminal"
       }
     },
     "i18n": {

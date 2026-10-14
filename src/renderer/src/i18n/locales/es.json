@@ -17663,6 +17663,20 @@
         "resuming": "Reanudando automáticamente tras el reinicio.",
         "resumed": "Reanudados automáticamente tras el reinicio.",
         "changeInSettings": "Cambiar en Ajustes"
+      },
+      "multiProject": {
+        "toggleView": "Mostrar proyectos en paralelo",
+        "terminalTab": "Terminal",
+        "closeTab": "Cerrar pestaña",
+        "noProject": "Selecciona un proyecto en la barra lateral para mostrarlo aquí.",
+        "missingProject": "Este proyecto no está disponible.",
+        "noTerminal": "No hay ninguna terminal abierta de este proyecto aquí.",
+        "noProjectLabel": "Sin proyecto",
+        "newTerminal": "Nueva terminal",
+        "splitRight": "Dividir a la derecha",
+        "splitDown": "Dividir hacia abajo",
+        "closePane": "Cerrar panel",
+        "openTerminal": "Abrir terminal"
       }
     },
     "i18n": {

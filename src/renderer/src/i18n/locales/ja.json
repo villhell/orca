@@ -17663,6 +17663,20 @@
         "resuming": "再起動後に自動で再開しています。",
         "resumed": "再起動後に自動で再開しました。",
         "changeInSettings": "設定で変更"
+      },
+      "multiProject": {
+        "toggleView": "プロジェクトを並べて表示",
+        "terminalTab": "ターミナル",
+        "closeTab": "タブを閉じる",
+        "noProject": "左のサイドバーでプロジェクトを選ぶと、ここに表示されます。",
+        "missingProject": "このプロジェクトは見つかりません。",
+        "noTerminal": "このプロジェクトでここに表示できるターミナルはありません。",
+        "noProjectLabel": "プロジェクト未選択",
+        "newTerminal": "新しいターミナル",
+        "splitRight": "右に分割",
+        "splitDown": "下に分割",
+        "closePane": "ペインを閉じる",
+        "openTerminal": "ターミナルを開く"
       }
     },
     "i18n": {

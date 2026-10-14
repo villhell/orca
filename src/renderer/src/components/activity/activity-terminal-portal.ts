@@ -9,7 +9,8 @@ export type ActivityTerminalPortalTarget = {
   // Why: each Activity thread targets one stable terminal leaf inside a tab.
   // Carry the durable paneKey across this boundary; TerminalPane resolves it
   // to the current numeric PaneManager handle immediately before isolation.
-  paneKey: string
+  // null portals the whole tab with its own splits (multi-project view).
+  paneKey: string | null
   forceUnavailable?: boolean
   active: boolean
 }
